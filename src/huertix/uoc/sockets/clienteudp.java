@@ -1,3 +1,5 @@
+package src.huertix.uoc.sockets;
+
 import java.net.*;
 import java.io.*;
 
@@ -9,7 +11,7 @@ public class clienteudp {
 		if (argv.length == 0) {
 			// check if arguments when invoking the program is 0
 			// then print error and exit the program
-			System.err.println("java clienteudp servidor");
+			System.err.println("java src.huertix.uoc.sockets.clienteudp servidor");
 			System.exit(1);
 		}
 

@@ -1,3 +1,5 @@
+package src.huertix.uoc.sockets;
+
 import java.net.*;
 import java.io.*;
 
@@ -27,6 +29,9 @@ public class servidorudp {
 
 				// socker UDP is ready to receive a paket and will use the Datagrampacket object to handle it
 				socket.receive(paquete);
+
+				String clientAddress = paquete.getAddress().getHostAddress();
+				System.out.println(String.format("Message from: %s", clientAddress));
 
 				// Declaration and initialization of a String variable
 				String mensaje = "";

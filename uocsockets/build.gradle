@@ -4,7 +4,7 @@ plugins {
 }
 
 version '1.0-SNAPSHOT'
-mainClassName = 'huertix.uoc.sockets.mod.ClientTcpMod'
+//mainClassNameTCP = 'huertix.uoc.sockets.mod.ClientTcpMod'
 
 sourceCompatibility = 1.8
 
@@ -15,16 +15,19 @@ repositories {
 dependencies {
 }
 
-jar {
+
+task (tcpclient, dependsOn: 'classes', type: Jar) {
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    from sourceSets.main.output
+    archivesBaseName = 'tcpclient'
+    version = ''
     manifest {
-        attributes 'Main-Class': mainClassName
+        attributes ('Main-Class': "huertix.uoc.sockets.mod.ClientTcpMod")
     }
+    exclude 'META-INF/.RSA', 'META-INF/.SF','META-INF/*.DSA'
 }
 
-distributions {
-    main {
-        baseName = 'client'
-        version = ''
-    }
+artifacts {
+    archives tcpclient
 }
 

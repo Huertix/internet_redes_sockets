@@ -8,10 +8,15 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
-public class ClientTcpMod {
+public class ClientTcpMod implements SocketAppInt{
 
 	private final static int SERVER_PORT = 80;
 	private final static String USER_NAME = "dhuertav@uoc.edu";
+
+
+	public ClientTcpMod() {
+		this.run();
+	}
 
 	/**
 	 * Validate host provided by user
@@ -48,7 +53,7 @@ public class ClientTcpMod {
 		return requestHeaders;
 	}
 
-	public static void main(String argv[]) {
+	public void run() {
 		try {
 
 			// Get the hostname by user

@@ -5,17 +5,25 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.util.Date;
 
-public class ServerUdpMod {
-    private final static int SERVER_PORT = 8000;
+public class ServerUdpMod implements SocketAppInt{
+    private int serverPort;
 
-    public static void main(String argv[]) {
+    public ServerUdpMod() {
+
+        serverPort = System.getenv("UDP_SERVER_PORT") == null ?
+                8000 : Integer.valueOf(System.getenv("UDP_SERVER_PORT"));
+
+        this.run();
+    }
+
+    public void run() {
 
         try {
 
             //Declaration and assignation of an object type DatagramSocket,
             // which will handle the packet to be received
 
-            DatagramSocket serverSocket = new DatagramSocket(SERVER_PORT);
+            DatagramSocket serverSocket = new DatagramSocket(serverPort);
 
             while (true) {
 

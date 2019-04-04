@@ -4,17 +4,28 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 
-public class ClientUdpMod {
+public class ClientUdpMod implements SocketAppInt{
 
-    private final static String SERVER_HOSTNAME = "localhost";
-    private final static int SERVER_PORT = 8000;
+    private String serverHostname;
+    private int serverPort;
 
-    public static void main(String argv[]) {
+    public ClientUdpMod() {
+
+        serverHostname = System.getenv("UDP_SERVER_HOSTNAME") == null ?
+                "localhost": System.getenv("UDP_SERVER_HOSTNAME");
+
+        serverPort = System.getenv("UDP_SERVER_PORT") == null ?
+                8000 : Integer.valueOf(System.getenv("UDP_SERVER_PORT"));
+
+        this.run();
+    }
+
+    public void run() {
 
         try {
             //Declaration and assignation to variable address with an object type InetAddress
             // with parameter server hostname
-            InetAddress address = InetAddress.getByName(SERVER_HOSTNAME);
+            InetAddress address = InetAddress.getByName(serverHostname);
             //Declaration and assignation of an object type DatagramSocket, which will handle the packet to be sent
             DatagramSocket socket = new DatagramSocket();
 
@@ -24,10 +35,12 @@ public class ClientUdpMod {
                 // Declaration and initialization of an array which could handle data
                 byte[] buffer = new byte[512];
 
-                System.out.print("Requested datetime. Response: ");
+                System.out.println(String.format("Requested datetime to -> %s:%s ", serverHostname, serverPort));
+                System.out.print("Response:");
+
                 // Declaration and assignation of a new DatagramPacket object to a variable
                 // passing parameters of buffer, buffer_length, destination server address and destination server port
-                DatagramPacket request = new DatagramPacket(buffer, buffer.length, address, SERVER_PORT);
+                DatagramPacket request = new DatagramPacket(buffer, buffer.length, address, serverPort);
                 // send the DatagramPacket to the server
                 socket.send(request);
 

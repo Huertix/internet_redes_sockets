@@ -1,7 +1,6 @@
-package src.huertix.uoc.sockets;
+package huertix.uoc.sockets.original;
 
 import java.net.*;
-import java.io.*;
 
 public class servidorudp {
 

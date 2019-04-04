@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+version '1.0-SNAPSHOT'
+mainClassName = 'huertix.uoc.sockets.mod.ClientTcpMod'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': mainClassName
+    }
+}
+
+distributions {
+    main {
+        baseName = 'client'
+        version = ''
+    }
+}
+

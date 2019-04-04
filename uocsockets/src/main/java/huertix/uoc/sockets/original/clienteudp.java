@@ -53,7 +53,8 @@ public class clienteudp {
 				mensaje_bytes = mensaje.getBytes();
 
 				// Assignation of a new DatagramPacket object to a variable
-				// passing parameters of message_size, message_length and server port
+				// passing parameters of message object, message_length,
+				// destination server address and destination server port
 				paquete = new DatagramPacket(mensaje_bytes, mensaje.length(), address, 6000);
 
 				// send the DatagramPacket to the server

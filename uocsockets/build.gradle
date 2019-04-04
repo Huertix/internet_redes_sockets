@@ -3,7 +3,7 @@ plugins {
     id 'application'
 }
 
-version '1.0-SNAPSHOT'
+version ''
 //mainClassNameTCP = 'huertix.uoc.sockets.mod.ClientTcpMod'
 
 sourceCompatibility = 1.8
@@ -27,7 +27,30 @@ task (tcpclient, dependsOn: 'classes', type: Jar) {
     exclude 'META-INF/.RSA', 'META-INF/.SF','META-INF/*.DSA'
 }
 
-artifacts {
-    archives tcpclient
+task (udpclient, dependsOn: 'classes', type: Jar) {
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    from sourceSets.main.output
+    archivesBaseName = 'updclient'
+    version = ''
+    manifest {
+        attributes ('Main-Class': "huertix.uoc.sockets.mod.ClientUpdMod")
+    }
+    exclude 'META-INF/.RSA', 'META-INF/.SF','META-INF/*.DSA'
 }
 
+task (udpserver, dependsOn: 'classes', type: Jar) {
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    from sourceSets.main.output
+    archivesBaseName = 'udpserver'
+    version = ''
+    manifest {
+        attributes ('Main-Class': "huertix.uoc.sockets.mod.ServerUdpMod")
+    }
+    exclude 'META-INF/.RSA', 'META-INF/.SF','META-INF/*.DSA'
+}
+
+artifacts {
+    archives tcpclient
+    archives udpclient
+    archives udpserver
+}

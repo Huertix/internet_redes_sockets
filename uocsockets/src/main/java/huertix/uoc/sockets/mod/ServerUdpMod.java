@@ -30,7 +30,7 @@ public class ServerUdpMod implements SocketAppInt{
                 // Declaration and initialization of an array which could handle data
                 byte[] buffer = new byte[512];
 
-                System.out.println("Waiting client communication...");
+                System.out.println("Waiting client communication on port: " + serverPort);
                 // Declaration and assignation of a new DatagramPacket object to a variable
                 // passing parameters of buffer, buffer_length
                 DatagramPacket receivePacket = new DatagramPacket(buffer, buffer.length);

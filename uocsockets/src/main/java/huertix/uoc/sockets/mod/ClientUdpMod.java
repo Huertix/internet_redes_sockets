@@ -36,7 +36,7 @@ public class ClientUdpMod implements SocketAppInt{
                 byte[] buffer = new byte[512];
 
                 System.out.println(String.format("Requested datetime to -> %s:%s ", serverHostname, serverPort));
-                System.out.print("Response:");
+                System.out.print("Response from server: ");
 
                 // Declaration and assignation of a new DatagramPacket object to a variable
                 // passing parameters of buffer, buffer_length, destination server address and destination server port

@@ -16,7 +16,7 @@ dependencies {
 }
 
 
-task (app, dependsOn: 'classes', type: Jar) {
+task (makeJar, dependsOn: 'classes', type: Jar) {
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
     from sourceSets.main.output
     archivesBaseName = 'socketsapp'
@@ -29,5 +29,5 @@ task (app, dependsOn: 'classes', type: Jar) {
 
 
 artifacts {
-    archives app
+    archives makeJar
 }
